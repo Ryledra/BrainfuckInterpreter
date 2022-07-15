@@ -40,6 +40,9 @@ bool Loop::doStep(char c, int i, Memory* mem){
 };
 
 void Loop::runScript() {
+    if ( !isValid(script) ) return;
+    // std::cout << "is valid";
+
     Memory mem {};
     for (int i {0}; i < script.length(); ++i)    {
         // mem.print();
@@ -61,4 +64,24 @@ int Loop::readInput()   {
     char c {};
     std::cin >> c;
     return int(c);
+}
+
+bool Loop::isValid(std::string script)  {
+    int openCount {0};
+    int closeCount {0};
+
+    for (int i {0}; i < script.length(); ++i)   {
+        if (script[i] == '[') openCount++;
+        if (script[i] == ']') closeCount++;
+
+        if (closeCount > openCount) {
+            std::cout << "Error: unmatched ']'";
+            return false;
+        }
+    }
+    if (openCount > closeCount) {
+        std::cout << "Error: unmatched '['";
+        return false;
+    }
+    return true;
 }

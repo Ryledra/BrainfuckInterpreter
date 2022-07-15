@@ -10,6 +10,7 @@ class Loop  {
         bool doStep(char c, int i, Memory* mem);
         bool validChar(char c);
         int readInput();
+        bool isValid(std::string script);
 
         std::string script;
         int readLocation { 0 };
