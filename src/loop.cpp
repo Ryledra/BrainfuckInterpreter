@@ -14,12 +14,18 @@ bool Loop::doStep(char c, int i, Memory* mem){
             break;
         
         case '[':
+            if ((*mem).getMemValue() == 0)  {
+                jumpLocation = matchLoopClose(i);
+                return true;
+            }
             loopLocation.push_back(i);
             //loopCount.push_back((*mem).getMemValue());
             break;
         case ']':
-            if ((*mem).getMemValue() > 0)
+            if ((*mem).getMemValue() > 0)   {
+                jumpLocation = loopLocation.back();
                 return true;
+            }
             loopLocation.pop_back();
             break;
         case '+':
@@ -48,7 +54,7 @@ void Loop::runScript() {
         // mem.print();
         if (validChar(script[i]))   {
             if(doStep(script[i], i, &mem)) {
-                i = loopLocation.back();
+                i = jumpLocation;
             }
         }
     }
@@ -84,4 +90,17 @@ bool Loop::isValid(std::string script)  {
         return false;
     }
     return true;
+}
+
+int Loop::matchLoopClose(int i)   {
+    int loopsOpened {0};
+    int loopsClosed {0};
+
+    while (loopsClosed <= loopsOpened)  {
+        ++i;
+        if (script[i] == '[') ++loopsOpened;
+        if (script[i] == ']') ++loopsClosed;
+    }
+
+    return i;
 }

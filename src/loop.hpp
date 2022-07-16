@@ -11,7 +11,9 @@ class Loop  {
         bool validChar(char c);
         int readInput();
         bool isValid(std::string script);
-
+        int matchLoopClose(int i);
+        
+        int jumpLocation {};
         std::string script;
         int readLocation { 0 };
         //std::vector<int> loopCount {};
