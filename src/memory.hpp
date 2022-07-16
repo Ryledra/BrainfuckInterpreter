@@ -7,7 +7,7 @@
 class Memory
 {
     private:
-        static const int stackSize { 20 };
+        static const int stackSize { 30000 };
         // int memory [stackSize] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         //                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         std::vector<int> memory { 0 };
@@ -32,6 +32,7 @@ class Memory
 
         void pointerUP()    { 
             // std::cout << pointer << ' ' << memory.size();
+            if (pointer == stackSize-1) std::exit(EXIT_FAILURE);
             if (pointer + 2 > memory.size())    {
                 memory.push_back(0);
                 // print();
@@ -39,7 +40,10 @@ class Memory
             pointer = (pointer + 1) % memory.size();
         };
 
-        void pointerDOWN()  { pointer = (pointer - 1) % memory.size(); };
+        void pointerDOWN()  { 
+            if (pointer == 0) std::exit(EXIT_FAILURE);
+            pointer = (pointer - 1); 
+        }
 
         int getMemValue()   { return memory[pointer]; };
 };
