@@ -26,7 +26,10 @@ class Memory
 
         void incMemory()    { memory[pointer]++; };
 
-        void decMemory()    { memory[pointer]--; };
+        void decMemory()    { 
+            if ( !(memory[pointer] == 0) )
+                memory[pointer]--; 
+        };
 
         void writeMemory(int value)    { memory[pointer] = value; };
 
@@ -37,12 +40,12 @@ class Memory
                 memory.push_back(0);
                 // print();
             }
-            pointer = (pointer + 1) % memory.size();
+            pointer++;
         };
 
         void pointerDOWN()  { 
             if (pointer == 0) std::exit(EXIT_FAILURE);
-            pointer = (pointer - 1); 
+            pointer--; 
         }
 
         int getMemValue()   { return memory[pointer]; };
