@@ -4,6 +4,7 @@ Loop::Loop(std::string script)   {
     Loop::script = script;
 }
 
+// returns true if jumpLocation set, else returns false for continue.
 bool Loop::doStep(char c, int i, Memory* mem){
     switch (c)  {
         case '<':
