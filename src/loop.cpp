@@ -20,7 +20,6 @@ bool Loop::doStep(char c, int i, Memory* mem){
                 return true;
             }
             loopLocation.push_back(i);
-            //loopCount.push_back((*mem).getMemValue());
             break;
         case ']':
             if ((*mem).getMemValue() > 0)   {
@@ -48,22 +47,19 @@ bool Loop::doStep(char c, int i, Memory* mem){
 
 void Loop::runScript() {
     if ( !isValid(script) ) return;
-    // std::cout << "is valid";
 
     Memory mem {};
     for (int i {0}; i < script.length(); ++i)    {
-        // mem.print();
-        if (validChar(script[i]))   {
-            if(doStep(script[i], i, &mem)) {
-                i = jumpLocation;
-            }
+        if (validChar(script[i]) && doStep(script[i], i, &mem)) {
+            i = jumpLocation;
         }
     }
 }
 
 bool Loop::validChar(char c)  {
     if (c == '<' || c == '>' || c == '[' || c == ']' || 
-        c == '+' || c == '-' || c == '.' || c == ','    ) return true;
+        c == '+' || c == '-' || c == '.' || c == ','    ) 
+        return true;
     return false;
 }
 

@@ -15,8 +15,6 @@ class Loop  {
         
         int jumpLocation {};
         std::string script;
-        int readLocation { 0 };
-        //std::vector<int> loopCount {};
         std::vector<int> loopLocation {};
 
     public:
