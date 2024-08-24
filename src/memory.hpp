@@ -1,5 +1,4 @@
-#ifndef MEMORY_HPP
-#define MEMORY_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -49,5 +48,3 @@ class Memory
 
         int getMemValue()   { return memory[pointer]; };
 };
-
-#endif

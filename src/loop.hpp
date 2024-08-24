@@ -1,5 +1,4 @@
-#ifndef LOOP_HPP
-#define LOOP_HPP
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -21,5 +20,3 @@ class Loop  {
         Loop(std::string script);
         void runScript();
 };
-
-#endif
