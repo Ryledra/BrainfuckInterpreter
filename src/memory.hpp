@@ -10,7 +10,7 @@ class Memory
         static const int stackSize { 30000 };
         // int memory [stackSize] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         //                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        std::vector<int> memory { 0 };
+        std::vector<unsigned char> memory { 0 };
         int pointer { 0 };
 
     public:
@@ -27,7 +27,6 @@ class Memory
         void incMemory()    { memory[pointer]++; };
 
         void decMemory()    { 
-            if ( !(memory[pointer] == 0) )
                 memory[pointer]--; 
         };
 
