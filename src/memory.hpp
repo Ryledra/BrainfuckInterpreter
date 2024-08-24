@@ -1,18 +1,16 @@
 #pragma once
 
-#include <vector>
-
 class Memory
 {
     private:
-        static const int stackSize { 30000 };
-        // int memory [stackSize] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        //                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        std::vector<unsigned char> memory { 0 };
-        int pointer { 0 };
+        static const int STACKSIZE { 30000 };
+        unsigned char* memoryStart {};
+        unsigned char* pointer {};
+        int memoryUsed { 0 };
 
     public:
-        void print();
+        Memory();
+        void debugPrint();
         void printValue();
         void incMemory();
         void decMemory();
