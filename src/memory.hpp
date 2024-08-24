@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <vector>
 
 class Memory
@@ -13,38 +12,12 @@ class Memory
         int pointer { 0 };
 
     public:
-        void print()    {
-            std::cout << '\n';
-            for (int i { 0 }; i < memory.size(); ++i)   {
-                std::cout << memory[i] << ',';
-            }
-            std::cout << '\n';
-        }
-
-        void printValue()   { std::cout << char(memory[pointer]); };
-
-        void incMemory()    { memory[pointer]++; };
-
-        void decMemory()    { 
-                memory[pointer]--; 
-        };
-
-        void writeMemory(int value)    { memory[pointer] = value; };
-
-        void pointerUP()    { 
-            // std::cout << pointer << ' ' << memory.size();
-            if (pointer == stackSize-1) std::exit(EXIT_FAILURE);
-            if (pointer + 2 > memory.size())    {
-                memory.push_back(0);
-                // print();
-            }
-            pointer++;
-        };
-
-        void pointerDOWN()  { 
-            if (pointer == 0) std::exit(EXIT_FAILURE);
-            pointer--; 
-        }
-
-        int getMemValue()   { return memory[pointer]; };
+        void print();
+        void printValue();
+        void incMemory();
+        void decMemory();
+        void writeMemory(int value);
+        void pointerUP();
+        void pointerDOWN();
+        int getMemValue();
 };
