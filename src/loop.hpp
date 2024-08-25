@@ -17,6 +17,8 @@ class Loop  {
         std::vector<int> loopLocation {};
 
     public:
+        Loop();
         Loop(std::string script);
+        void setScript(std::string script);
         void runScript();
 };

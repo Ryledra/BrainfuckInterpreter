@@ -1,6 +1,12 @@
 #include "loop.hpp"
 
+Loop::Loop()    {};
+
 Loop::Loop(std::string script)   {
+    Loop::script = script;
+}
+
+void Loop::setScript(std::string script)    {
     Loop::script = script;
 }
 
