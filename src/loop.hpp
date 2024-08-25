@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
+#include "loopStack.hpp"
 #include "memory.hpp"
 
 class Loop  {
@@ -14,7 +14,7 @@ class Loop  {
         
         int jumpLocation {};
         std::string script;
-        std::vector<int> loopLocation {};
+        LoopStack loopLocation {};
 
     public:
         Loop();
