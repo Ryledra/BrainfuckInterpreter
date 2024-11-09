@@ -11,7 +11,7 @@ void Memory::debugPrint()    {
 }
 
 Memory::Memory()    {
-    memoryStart = (unsigned char*)malloc(STACKSIZE);
+    memoryStart = (unsigned char*)malloc(sizeof(unsigned char) * STACKSIZE);
     pointer = memoryStart;
     (*pointer) = 0;
     memoryUsed++;

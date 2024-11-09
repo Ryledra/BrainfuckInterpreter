@@ -2,7 +2,7 @@
 #include "loopStack.hpp"
 
 LoopStack::LoopStack()  {
-    stackStart = (int*)malloc(STACKSIZE);
+    stackStart = (int*)malloc(sizeof(int) * STACKSIZE);
 }
 
 void LoopStack::push_back(int location) {
