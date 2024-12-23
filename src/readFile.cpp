@@ -1,8 +1,11 @@
 #include "readFile.hpp"
+#include <fstream>
+#include <filesystem>
 
-std::string readFile::file_contents(const std::filesystem::path& path)
+char* readFile::file_contents(const char * str_path)
 {
     // Sanity check
+    std::filesystem::path path {str_path};
     if (!std::filesystem::is_regular_file(path))
         return { };
 
@@ -14,7 +17,10 @@ std::string readFile::file_contents(const std::filesystem::path& path)
         return { };
 
     // Read contents
-    std::string content{std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>()};
+    char * content = (char*)malloc(sizeof(char) * (file.gcount() + 1));
+    int i { 0 };
+    while (file.get(content[i])) i++;
+    content[i] = '\0';
 
     // Close the file
     file.close();
