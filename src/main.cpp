@@ -32,8 +32,8 @@ int main(int argc, char *argv[])  {
             return 1;
         }
 
-        std::filesystem::path path { argv[2] };
-        l.setScript( readFile::file_contents(path) );
+        //std::filesystem::path path { argv[2] };
+        l.setScript( readFile::file_contents(argv[2]) );
     }
     l.runScript();
     std::cout << '\n';
