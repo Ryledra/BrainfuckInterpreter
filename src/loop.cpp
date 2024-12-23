@@ -1,12 +1,13 @@
 #include "loop.hpp"
+#include <iostream>
 
 Loop::Loop()    {};
 
-Loop::Loop(std::string script)   {
+Loop::Loop(char * script)   {
     Loop::script = script;
 }
 
-void Loop::setScript(std::string script)    {
+void Loop::setScript(char * script)    {
     Loop::script = script;
 }
 
@@ -14,38 +15,38 @@ void Loop::setScript(std::string script)    {
 bool Loop::doStep(char c, int i, Memory* mem){
     switch (c)  {
         case '<':
-            (*mem).pointerDOWN();
+            mem->pointerDOWN();
             break;
         case '>':
-            (*mem).pointerUP();
+            mem->pointerUP();
             break;
         
         case '[':
-            if ((*mem).getMemValue() == 0)  {
+            if (mem->getMemValue() == 0)  {
                 jumpLocation = matchLoopClose(i);
                 return true;
             }
             loopLocation.push_back(i);
             break;
         case ']':
-            if ((*mem).getMemValue() > 0)   {
+            if (mem->getMemValue() > 0)   {
                 jumpLocation = loopLocation.back();
                 return true;
             }
             loopLocation.pop_back();
             break;
         case '+':
-            (*mem).incMemory();
+            mem->incMemory();
             break;
         case '-':
-            (*mem).decMemory();
+            mem->decMemory();
             break;
         
         case '.':
-            (*mem).printValue();
+            mem->printValue();
             break;
         case ',':
-            (*mem).writeMemory(readInput());
+            mem->writeMemory( getchar() );
             break;
     }
     return false;
@@ -55,31 +56,26 @@ void Loop::runScript() {
     if ( !isValid(script) ) return;
 
     Memory mem {};
-    for (int i {0}; i < script.length(); ++i)    {
+    int i {0};
+    while (script[i] != '\0')   {
         if (validChar(script[i]) && doStep(script[i], i, &mem)) {
             i = jumpLocation;
         }
+        i++;
     }
 }
 
 bool Loop::validChar(char c)  {
-    if (c == '<' || c == '>' || c == '[' || c == ']' || 
-        c == '+' || c == '-' || c == '.' || c == ','    ) 
-        return true;
-    return false;
+    return c == '<' || c == '>' || c == '[' || c == ']' || 
+        c == '+' || c == '-' || c == '.' || c == ',';
 }
 
-int Loop::readInput()   {
-    char c {};
-    std::cin >> c;
-    return int(c);
-}
-
-bool Loop::isValid(std::string script)  {
+bool Loop::isValid(char * script)  {
     int openCount {0};
     int closeCount {0};
 
-    for (int i {0}; i < script.length(); ++i)   {
+    int i {0};
+    while (script[i] != '\0')  {
         if (script[i] == '[') openCount++;
         if (script[i] == ']') closeCount++;
 
@@ -87,6 +83,7 @@ bool Loop::isValid(std::string script)  {
             std::cout << "Error: unmatched ']'";
             return false;
         }
+        i++;
     }
     if (openCount > closeCount) {
         std::cout << "Error: unmatched '['";
