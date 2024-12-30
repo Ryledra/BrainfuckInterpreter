@@ -32,3 +32,8 @@ Running the program without arguments provides help:
   Flags:
     -f, --file     indicates the following filepath holds the code
 ```
+
+## Contributing
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
