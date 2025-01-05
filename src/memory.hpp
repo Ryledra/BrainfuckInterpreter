@@ -7,9 +7,11 @@ class Memory
         unsigned char* memoryStart {};
         unsigned char* pointer {};
         int memoryUsed { 0 };
+        bool debugMode { false };
 
     public:
         Memory();
+        Memory(bool debug);
         void debugPrint();
         void printValue();
         void incMemory();

@@ -52,10 +52,10 @@ bool Loop::doStep(char c, int i, Memory* mem){
     return false;
 };
 
-void Loop::runScript() {
+void Loop::runScript(bool debug) {
     if ( !isValid(script) ) return;
 
-    Memory mem {};
+    Memory mem {debug};
     int i {0};
     while (script[i] != '\0')   {
         if (validChar(script[i]) && doStep(script[i], i, &mem)) {

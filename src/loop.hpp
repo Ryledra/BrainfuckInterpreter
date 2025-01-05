@@ -18,5 +18,5 @@ class Loop  {
         Loop();
         Loop(char * script);
         void setScript(char * script);
-        void runScript();
+        void runScript(bool debug);
 };

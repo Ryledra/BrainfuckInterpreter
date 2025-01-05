@@ -17,8 +17,17 @@ Memory::Memory()    {
     memoryUsed++;
 }
 
+Memory::Memory(bool debug)    {
+    debugMode = debug;
+    memoryStart = (unsigned char*)malloc(sizeof(unsigned char) * STACKSIZE);
+    pointer = memoryStart;
+    (*pointer) = 0;
+    memoryUsed++;
+}
+
 void Memory::printValue()   {
-    std::cout << char(*pointer);
+    if(debugMode) std::cout << int(*pointer) << '\n';
+    else std::cout << char(*pointer);
 }
 
 void Memory::incMemory()    {
